@@ -1,0 +1,124 @@
+{
+  "site": {
+    "okul": "Okul adınızı yazın",
+    "baslik": "Okulumuzun Tohum Bankası",
+    "aciklama": "Yerel ve atalık tohumları toplayıp koruyoruz, paylaşıyoruz. Bu liste örnek verilerle doludur; yönetim sayfasından kendi tohumlarınızı ekleyin.",
+    "iletisim": "Tohum almak ya da bağışlamak için fen laboratuvarına uğrayın ya da öğretmeninize ulaşın.",
+    "azEsik": 10,
+    "logo": "",
+    "hakkimizda": "Örnek metin: Okulumuzun tohum bankası, yerel ve atalık tohumları koruyup öğrencilerle birlikte yeniden yaşatmak için kuruldu.\n\nBurada tohumlarımızı topluyor, kayıt altına alıyor ve paylaşıyoruz. Bu metni yönetim sayfasından kendi hikâyenizle değiştirin.",
+    "sosyal": {
+      "instagram": "",
+      "facebook": "",
+      "youtube": "",
+      "eposta": ""
+    }
+  },
+  "tohumlar": [
+    {
+      "id": "domates-ornek",
+      "ad": "Domates (örnek)",
+      "bilimselAd": "Solanum lycopersicum",
+      "kategori": "Sebze",
+      "aciklama": "Örnek kayıt. Yazın en çok ürün veren sebzelerden. Güneşli ve su tutan bir yer sever.",
+      "adet": 42,
+      "birim": "paket",
+      "ekim": "Nisan – Mayıs",
+      "foto": "",
+      "guncelleme": "2026-10-02"
+    },
+    {
+      "id": "aycicegi-ornek",
+      "ad": "Ayçiçeği (örnek)",
+      "bilimselAd": "Helianthus annuus",
+      "kategori": "Çiçek",
+      "aciklama": "Örnek kayıt. Güneşe dönen büyük çiçekleri ile bahçenin en neşeli bitkisidir.",
+      "adet": 8,
+      "birim": "paket",
+      "ekim": "Nisan",
+      "foto": "",
+      "guncelleme": "2026-10-02"
+    },
+    {
+      "id": "nane-ornek",
+      "ad": "Nane (örnek)",
+      "bilimselAd": "Mentha spicata",
+      "kategori": "Baharat ve Şifalı",
+      "aciklama": "Örnek kayıt. Saksıda kolay yetişir, çay ve yemeklerde kullanılır.",
+      "adet": 0,
+      "birim": "paket",
+      "ekim": "İlkbahar",
+      "foto": "",
+      "guncelleme": "2026-10-02"
+    }
+  ],
+  "destekciler": [
+    {
+      "id": "ornek-1",
+      "ad": "Örnek Okul Aile Birliği",
+      "tur": "Kurum",
+      "aciklama": "Örnek kayıt: toprak ve saksı desteği.",
+      "logo": "",
+      "link": ""
+    },
+    {
+      "id": "ornek-2",
+      "ad": "Örnek Belediye Park ve Bahçeler",
+      "tur": "Belediye",
+      "aciklama": "Örnek kayıt: fide ve eğitim desteği.",
+      "logo": "",
+      "link": ""
+    },
+    {
+      "id": "ornek-3",
+      "ad": "Örnek Veli Ailesi",
+      "tur": "Veli",
+      "aciklama": "Örnek kayıt: atalık tohum bağışı.",
+      "logo": "",
+      "link": ""
+    }
+  ],
+  "ekip": [
+    {
+      "id": "ekip-1",
+      "ad": "Örnek Öğretmen",
+      "gorev": "Proje sorumlusu",
+      "foto": ""
+    },
+    {
+      "id": "ekip-2",
+      "ad": "Örnek Öğrenci",
+      "gorev": "Tohum kayıt görevlisi",
+      "foto": ""
+    }
+  ],
+  "duyurular": [
+    {
+      "id": "d-1",
+      "baslik": "Örnek: Tohum takas günü",
+      "tur": "Etkinlik",
+      "tarih": "2026-10-20",
+      "metin": "Örnek kayıt. Evinizdeki tohumları getirin, değiştirin."
+    },
+    {
+      "id": "d-2",
+      "baslik": "Örnek: Banka açıldı!",
+      "tur": "Duyuru",
+      "tarih": "2026-10-02",
+      "metin": "Örnek kayıt. Tohum bankamız hizmete girdi."
+    }
+  ],
+  "sss": [
+    {
+      "id": "s-1",
+      "soru": "Tohumlar ücretli mi?",
+      "cevap": "Örnek cevap: Hayır, tohumlarımız ücretsizdir."
+    },
+    {
+      "id": "s-2",
+      "soru": "Nasıl tohum bağışlayabilirim?",
+      "cevap": "Örnek cevap: Fen laboratuvarına uğrayıp öğretmenimize teslim edebilirsiniz."
+    }
+  ],
+  "galeri": []
+}

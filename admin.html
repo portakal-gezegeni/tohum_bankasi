@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="tr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Tohum Bankası – Yönetim</title>
+<style>
+:root{--bg:#f6f0e4;--card:#fffdf7;--ink:#2a2a22;--mut:#6b6a5c;--g:#2f5d3a;--t:#c4572b;--line:#e2d9c4;--bad:#b3342b;--ok:#2f7d46;box-sizing:border-box}
+@media(prefers-color-scheme:dark){:root{--bg:#171a14;--card:#20241c;--ink:#efeadb;--mut:#a6a590;--g:#8fc79a;--t:#ef8a5b;--line:#363b2f;--bad:#f08379;--ok:#7bd196}}
+*{box-sizing:inherit}body{margin:0;background:var(--bg);color:var(--ink);font:500 16px/1.5 system-ui,Segoe UI,Roboto,sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.wrap{max-width:900px;margin:0 auto;padding:16px}h1{margin:0;font-size:1.5rem}h2{font-size:1.1rem;margin:0 0 8px}
+.card{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:14px;margin:12px 0}
+label{display:block;font-weight:700;margin:10px 0 3px}.h{color:var(--mut);font-size:.88rem;font-weight:500}
+input,textarea,select{font:inherit;width:100%;padding:9px 11px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
+input:focus-visible,textarea:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid var(--t);outline-offset:1px}
+button{font:inherit;font-weight:700;border-radius:10px;border:2px solid var(--g);background:var(--g);color:#fff;padding:9px 16px;cursor:pointer}
+@media(prefers-color-scheme:dark){button{color:#12200f}}
+button.alt{background:transparent;color:var(--ink);border-color:var(--line)}button.del{background:transparent;color:var(--bad);border-color:var(--bad)}button:disabled{opacity:.45;cursor:default}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:2;border-bottom:2px solid var(--line)}
+.sp{flex:1}.msg{font-weight:700}.msg.ok{color:var(--ok)}.msg.err{color:var(--bad)}
+.r{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.th{width:64px;height:64px;border-radius:10px;background:var(--line);display:grid;place-items:center;font-size:1.8rem;overflow:hidden;flex:none}.th img{width:100%;height:100%;object-fit:cover}
+.nm{flex:1;min-width:140px}.nm b{display:block}.nm span{color:var(--mut);font-size:.88rem}
+.st{display:flex;align-items:center;gap:4px}.st input{width:78px;text-align:center}.st button{padding:8px 12px}
+dialog{border:0;border-radius:16px;padding:18px;max-width:560px;width:calc(100% - 24px);background:var(--card);color:var(--ink);max-height:94dvh}dialog::backdrop{background:rgba(0,0,0,.55)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:520px){.g2{grid-template-columns:1fr}}
+#pv,#pv2{max-width:100%;max-height:200px;border-radius:10px;margin-top:8px;display:none}
+</style></head><body><div class="wrap">
+<h1>🌱 Tohum Bankası – Yönetim</h1>
+<div id="conn" class="card"><h2>1. Bağlan (yalnızca ilk seferde)</h2>
+ <p class="h">Bilgiler sadece bu tarayıcıda saklanır. Ayrıntılı adımlar README dosyasında.</p>
+ <label for="repo">GitHub deposu</label><input id="repo" placeholder="kullanici-adi/tohum-bankasi" autocomplete="off">
+ <label for="br">Dal (branch)</label><input id="br" value="main">
+ <label for="tk">Erişim anahtarı (token)</label><input id="tk" type="password" placeholder="github_pat_…" autocomplete="off">
+ <p><button id="go">Bağlan ve yükle</button> <span class="msg" id="cm"></span></p></div>
+<div id="app" hidden>
+ <div class="bar"><button id="pub" disabled>📤 Yayınla</button><span class="msg" id="msg">Değişiklik yok</span><span class="sp"></span><button class="alt" id="newb">＋ Yeni tohum</button><button class="alt" id="out">Çıkış</button></div>
+ <details class="card"><summary><b>Site ayarları</b> (başlık, açıklama, iletişim)</summary>
+  <label for="s_okul">Okul adı</label><input id="s_okul"><label for="s_baslik">Site başlığı</label><input id="s_baslik">
+  <label for="s_aciklama">Kısa açıklama</label><textarea id="s_aciklama" rows="2"></textarea>
+  <label for="s_iletisim">İletişim / nasıl tohum alınır</label><textarea id="s_iletisim" rows="2"></textarea>
+  <label for="s_az">“Az kaldı” uyarısı kaç adetten başlasın?</label><input id="s_az" type="number" min="0">
+  <label for="s_hakkimizda">Hakkımızda metni (paragraf için boş satır bırak)</label><textarea id="s_hakkimizda" rows="5"></textarea>
+  <label for="s_logo">Okul logosu</label><input id="s_logo" type="file" accept="image/*"><img id="pvL" alt="Logo" style="display:none;max-height:80px;margin-top:8px">
+  <label for="s_instagram">Instagram adresi</label><input id="s_instagram" placeholder="https://instagram.com/…">
+  <label for="s_facebook">Facebook adresi</label><input id="s_facebook" placeholder="https://facebook.com/…">
+  <label for="s_youtube">YouTube adresi</label><input id="s_youtube" placeholder="https://youtube.com/…">
+  <label for="s_eposta">E-posta</label><input id="s_eposta" type="email" placeholder="tohum@okul.k12.tr"></details>
+ <div id="list"></div>
+ <h2 style="margin-top:28px">🤝 Destekçiler</h2><p class="h">Sitenin altında “Destekçilerimiz” bölümünde görünür. Boş bırakırsan bölüm hiç görünmez.</p><button class="alt" id="newd">＋ Yeni destekçi</button><div id="dlist"></div><div id="more"></div>
+</div></div>
+<dialog id="dlg"><form method="dialog" id="fm" style="margin:0"><h2 id="dt">Tohum</h2>
+ <label for="f_ad">Adı *</label><input id="f_ad" required>
+ <label for="f_bi">Bilimsel adı</label><input id="f_bi">
+ <div class="g2"><div><label for="f_ka">Kategori</label><input id="f_ka" list="cats" placeholder="Sebze, Çiçek…"><datalist id="cats"></datalist></div>
+ <div><label for="f_ek">Ekim zamanı</label><input id="f_ek" placeholder="Nisan – Mayıs"></div>
+ <div><label for="f_ad2">Adet</label><input id="f_ad2" type="number" min="0" value="0"></div>
+ <div><label for="f_bm">Birim</label><select id="f_bm"><option>paket</option><option>adet</option><option>gram</option><option>kavanoz</option></select></div></div>
+ <label for="f_ac">Açıklama</label><textarea id="f_ac" rows="3"></textarea>
+ <label for="f_ft">Fotoğraf</label><input id="f_ft" type="file" accept="image/*"><img id="pv" alt="Önizleme">
+ <p style="display:flex;gap:10px;justify-content:flex-end"><button type="button" class="alt" id="cn">Vazgeç</button><button type="submit" id="sv">Kaydet</button></p></form></dialog>
+<dialog id="dlg2"><form method="dialog" id="fm2" style="margin:0"><h2 id="dt2">Destekçi</h2>
+ <label for="d_ad">Adı *</label><input id="d_ad" required>
+ <label for="d_tur">Türü</label><select id="d_tur"><option>Kurum</option><option>Firma</option><option>Belediye</option><option>Okul / Sınıf</option><option>Veli</option><option>Kişi</option></select>
+ <label for="d_ac">Kısa not (isteğe bağlı)</label><textarea id="d_ac" rows="2" placeholder="Örn. Fide ve toprak desteği"></textarea>
+ <label for="d_lk">İnternet adresi (isteğe bağlı)</label><input id="d_lk" placeholder="https://…">
+ <label for="d_ft">Logo (isteğe bağlı)</label><input id="d_ft" type="file" accept="image/*"><img id="pv2" alt="Önizleme" style="display:none;margin-top:8px">
+ <p style="display:flex;gap:10px;justify-content:flex-end"><button type="button" class="alt" id="cn2">Vazgeç</button><button type="submit">Kaydet</button></p></form></dialog>
+<dialog id="dlgG"><form method="dialog" id="fmG" style="margin:0"><h2 id="dtG"></h2><div id="fG"></div>
+ <label for="gF" id="gFL">Fotoğraf</label><input id="gF" type="file" accept="image/*"><img id="pvG" alt="Önizleme" style="display:none;margin-top:8px;max-width:100%;max-height:200px;border-radius:10px">
+ <p style="display:flex;gap:10px;justify-content:flex-end"><button type="button" class="alt" id="cnG">Vazgeç</button><button type="submit">Kaydet</button></p></form></dialog>
+<script>
+const $=s=>document.getElementById(s);
+let cfg=JSON.parse(localStorage.getItem("tb_cfg")||"{}"),data=null,sha=null,pend={},dirty=false,edit=null,newPhoto=null;
+const EMO={"Sebze":"🍅","Meyve":"🍓","Çiçek":"🌻","Tahıl":"🌾","Baharat ve Şifalı":"🌿","Ağaç":"🌳"};
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const enc=s=>btoa(unescape(encodeURIComponent(s))),dec=s=>decodeURIComponent(escape(atob(s.replace(/\s/g,""))));
+const api=(p,o={})=>fetch(`https://api.github.com/repos/${cfg.repo}/${p}`,{...o,headers:{Authorization:"Bearer "+cfg.token,Accept:"application/vnd.github+json",...(o.headers||{})}});
+const say=(t,c="")=>{$("msg").textContent=t;$("msg").className="msg "+c};
+const mark=()=>{dirty=true;$("pub").disabled=false;say("Kaydedilmemiş değişiklikler var","err")};
+async function load(){const r=await api(`contents/seeds.json?ref=${encodeURIComponent(cfg.br)}`);
+ if(r.status===401||r.status===403)throw new Error("Anahtar geçersiz ya da yetkisiz (Contents: Read and write olmalı).");
+ if(r.status===404)throw new Error("Depo ya da seeds.json bulunamadı. Depo adını ve dalı kontrol edin.");
+ if(!r.ok)throw new Error("Hata: "+r.status);const j=await r.json();sha=j.sha;data=JSON.parse(dec(j.content));data.site=data.site||{};data.tohumlar=data.tohumlar||[];data.destekciler=data.destekciler||[];for(const k of ["ekip","duyurular","sss","galeri"])data[k]=data[k]||[];pend={};dirty=false}
+async function connect(){cfg={repo:$("repo").value.trim(),br:$("br").value.trim()||"main",token:$("tk").value.trim()};$("cm").textContent="Bağlanıyor…";
+ try{await load();localStorage.setItem("tb_cfg",JSON.stringify(cfg));show()}catch(e){$("cm").textContent=e.message;$("cm").className="msg err"}}
+function show(){$("conn").hidden=true;$("app").hidden=false;const s=data.site;["okul","baslik","aciklama","iletisim"].forEach(k=>$("s_"+k).value=s[k]||"");$("s_az").value=s.azEsik??10;
+ ["okul","baslik","aciklama","iletisim","az"].forEach(k=>$("s_"+k).oninput=()=>{const v=$("s_"+k).value;if(k==="az")s.azEsik=+v;else s[k]=v;mark()});
+ $("pub").disabled=true;say("Bağlandı. Değişiklik yok","ok");list();more();siteX()}
+function list(){const T=data.tohumlar;$("cats").innerHTML=[...new Set(T.map(t=>t.kategori).filter(Boolean))].map(c=>`<option>${esc(c)}`).join("");
+ $("list").innerHTML=T.length?T.map((t,i)=>{const src=pend[t.foto]||t.foto;return`<div class="card r"><div class="th">${src?`<img src="${esc(src)}" alt="">`:EMO[t.kategori]||"🌱"}</div><div class="nm"><b>${esc(t.ad)}</b><span>${esc(t.kategori||"")} · ${esc(t.ekim||"")}</span></div>
+ <div class="st"><button class="alt" data-a="m" data-i="${i}" aria-label="Azalt">−</button><input type="number" min="0" value="${t.adet}" data-a="n" data-i="${i}" aria-label="${esc(t.ad)} adet"><button class="alt" data-a="p" data-i="${i}" aria-label="Artır">+</button><span class="h">${esc(t.birim||"")}</span></div>
+ <button class="alt" data-a="e" data-i="${i}">Düzenle</button><button class="del" data-a="d" data-i="${i}">Sil</button></div>`}).join(""):'<p class="h">Henüz tohum yok. “Yeni tohum” ile ekleyin.</p>';dl()}
+const today=()=>new Date().toISOString().slice(0,10);
+$("list").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const i=+b.dataset.i,t=data.tohumlar[i],a=b.dataset.a;
+ if(a==="p"||a==="m"){t.adet=Math.max(0,(+t.adet||0)+(a==="p"?1:-1));t.guncelleme=today();mark();list()}
+ else if(a==="e")open(i);else if(a==="d"&&confirm(`“${t.ad}” silinsin mi?`)){data.tohumlar.splice(i,1);mark();list()}});
+$("list").addEventListener("change",e=>{if(e.target.dataset.a==="n"){const t=data.tohumlar[+e.target.dataset.i];t.adet=Math.max(0,+e.target.value||0);t.guncelleme=today();mark();list()}});
+function open(i){edit=i;newPhoto=null;const t=i==null?{adet:0,birim:"paket"}:data.tohumlar[i];$("dt").textContent=i==null?"Yeni tohum":"Tohumu düzenle";
+ $("f_ad").value=t.ad||"";$("f_bi").value=t.bilimselAd||"";$("f_ka").value=t.kategori||"";$("f_ek").value=t.ekim||"";$("f_ad2").value=t.adet??0;$("f_bm").value=t.birim||"paket";$("f_ac").value=t.aciklama||"";
+ $("f_ft").value="";const src=t.foto?(pend[t.foto]||t.foto):"";$("pv").style.display=src?"block":"none";$("pv").src=src;$("dlg").showModal()}
+$("newb").onclick=()=>open(null);$("cn").onclick=()=>$("dlg").close();
+function resize(file,max=900,ty="image/jpeg"){return new Promise((ok,no)=>{const u=URL.createObjectURL(file),im=new Image();im.onload=()=>{const k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext("2d").drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);ok(c.toDataURL(ty,.85))};im.onerror=no;im.src=u})}
+$("f_ft").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{newPhoto=await resize(f);$("pv").src=newPhoto;$("pv").style.display="block"}catch{alert("Bu fotoğraf okunamadı.")}};
+const slug=s=>s.toLowerCase().replace(/ı/g,"i").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"tohum";
+$("fm").onsubmit=ev=>{ev.preventDefault();const ad=$("f_ad").value.trim();if(!ad)return;
+ const t=edit==null?{id:slug(ad)+"-"+Date.now().toString(36)}:data.tohumlar[edit];
+ Object.assign(t,{ad,bilimselAd:$("f_bi").value.trim(),kategori:$("f_ka").value.trim(),ekim:$("f_ek").value.trim(),adet:Math.max(0,+$("f_ad2").value||0),birim:$("f_bm").value,aciklama:$("f_ac").value.trim(),guncelleme:today()});
+ if(newPhoto){const p=`images/${slug(ad)}-${Date.now().toString(36)}.jpg`;pend[p]=newPhoto;t.foto=p}
+ if(edit==null)data.tohumlar.push(t);$("dlg").close();mark();list()};
+async function put(path,content,sh,msg){const r=await api(`contents/${path}`,{method:"PUT",body:JSON.stringify({message:msg,content,branch:cfg.br,...(sh?{sha:sh}:{})})});
+ if(r.status===409||r.status===422)throw new Error("Dosya başka yerden değişmiş. Sayfayı yenileyip tekrar deneyin.");if(!r.ok)throw new Error("Kayıt hatası: "+r.status);return r.json()}
+$("pub").onclick=async()=>{$("pub").disabled=true;say("Yayınlanıyor…");
+ try{const used=new Set(JSON.stringify(data).match(/images\/[^"]+/g)||[]);
+  for(const [p,d] of Object.entries(pend)){if(!used.has(p))continue;say("Fotoğraf yükleniyor…");await put(p,d.split(",")[1],null,"Tohum fotoğrafı eklendi")}
+  say("Veri kaydediliyor…");const r=await put("seeds.json",enc(JSON.stringify(data,null,2)+"\n"),sha,"Tohum listesi güncellendi");sha=r.content.sha;pend={};dirty=false;list();
+  say("✅ Yayınlandı. Sitede görünmesi 1–2 dakika sürebilir.","ok")}catch(e){say(e.message,"err");$("pub").disabled=false}};
+$("out").onclick=()=>{if(dirty&&!confirm("Yayınlanmamış değişiklikler kaybolacak. Çıkılsın mı?"))return;localStorage.removeItem("tb_cfg");location.reload()};
+addEventListener("beforeunload",e=>{if(dirty){e.preventDefault();e.returnValue=""}});
+let ed2=null,newLogo=null;
+function dl(){const D=data.destekciler;$("dlist").innerHTML=D.length?D.map((d,i)=>{const src=pend[d.logo]||d.logo;return`<div class="card r"><div class="th">${src?`<img src="${esc(src)}" alt="">`:"🤝"}</div><div class="nm"><b>${esc(d.ad)}</b><span>${esc(d.tur||"")}</span></div><button class="alt" data-a="e" data-i="${i}">Düzenle</button><button class="del" data-a="d" data-i="${i}">Sil</button></div>`}).join(""):'<p class="h">Henüz destekçi yok.</p>'}
+$("dlist").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const i=+b.dataset.i;if(b.dataset.a==="e")openD(i);else if(b.dataset.a==="d"&&confirm(`“${data.destekciler[i].ad}” silinsin mi?`)){data.destekciler.splice(i,1);mark();dl()}});
+function openD(i){ed2=i;newLogo=null;const d=i==null?{}:data.destekciler[i];$("dt2").textContent=i==null?"Yeni destekçi":"Destekçiyi düzenle";$("d_ad").value=d.ad||"";$("d_tur").value=d.tur||"Kurum";$("d_ac").value=d.aciklama||"";$("d_lk").value=d.link||"";$("d_ft").value="";const src=d.logo?(pend[d.logo]||d.logo):"";$("pv2").style.display=src?"block":"none";$("pv2").src=src;$("dlg2").showModal()}
+$("newd").onclick=()=>openD(null);$("cn2").onclick=()=>$("dlg2").close();
+$("d_ft").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{newLogo=await resize(f,400,"image/png");$("pv2").src=newLogo;$("pv2").style.display="block"}catch{alert("Bu görsel okunamadı.")}};
+$("fm2").onsubmit=ev=>{ev.preventDefault();const ad=$("d_ad").value.trim();if(!ad)return;const d=ed2==null?{id:slug(ad)+"-"+Date.now().toString(36)}:data.destekciler[ed2];
+ let lk=$("d_lk").value.trim();if(lk&&!/^https?:\/\//i.test(lk))lk="https://"+lk;
+ Object.assign(d,{ad,tur:$("d_tur").value,aciklama:$("d_ac").value.trim(),link:lk});
+ if(newLogo){const p=`images/destek-${slug(ad)}-${Date.now().toString(36)}.png`;pend[p]=newLogo;d.logo=p}
+ if(ed2==null)data.destekciler.push(d);$("dlg2").close();mark();dl()};
+const COL={
+ duyurular:{t:"📢 Duyurular ve etkinlikler",n:"Yeni duyuru / etkinlik",f:[["baslik","Başlık *","text"],["tur","Tür","sel",["Duyuru","Etkinlik"]],["tarih","Tarih","date"],["metin","Metin","area"]],ad:"baslik",sub:x=>(x.tur||"")+" · "+(x.tarih||"")},
+ ekip:{t:"👩‍🏫 Ekip",n:"Yeni kişi",f:[["ad","Adı soyadı *","text"],["gorev","Görevi","text"]],foto:["foto",500],ad:"ad",sub:x=>x.gorev||"",sira:1},
+ galeri:{t:"📷 Fotoğraf galerisi",n:"Yeni fotoğraf",f:[["aciklama","Açıklama","text"]],foto:["foto",1200,1],ad:"aciklama",sub:x=>"",sira:1},
+ sss:{t:"❓ Sık sorulan sorular",n:"Yeni soru",f:[["soru","Soru *","text"],["cevap","Cevap","area"]],ad:"soru",sub:x=>"",sira:1}};
+function more(){$("more").innerHTML=Object.entries(COL).map(([k,c])=>`<h2 style="margin-top:28px">${c.t}</h2><button class="alt" data-g="${k}" data-a="n">＋ ${c.n}</button>`+(data[k].length?data[k].map((x,i)=>{const src=c.foto?(pend[x[c.foto[0]]]||x[c.foto[0]]):"";return`<div class="card r">${c.foto?`<div class="th">${src?`<img src="${esc(src)}" alt="">`:"📷"}</div>`:""}<div class="nm"><b>${esc(x[c.ad]||"Fotoğraf")}</b><span>${esc(c.sub(x))}</span></div>${c.sira?`<button class="alt" data-g="${k}" data-a="u" data-i="${i}" aria-label="Yukarı">↑</button><button class="alt" data-g="${k}" data-a="o" data-i="${i}" aria-label="Aşağı">↓</button>`:""}<button class="alt" data-g="${k}" data-a="e" data-i="${i}">Düzenle</button><button class="del" data-g="${k}" data-a="d" data-i="${i}">Sil</button></div>`}).join(""):'<p class="h">Henüz kayıt yok. (Boşsa sitede bu bölüm görünmez.)</p>')).join("")}
+$("more").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const k=b.dataset.g,a=b.dataset.a,i=+b.dataset.i,A=data[k];
+ if(a==="n")openG(k,null);else if(a==="e")openG(k,i);else if(a==="d"){if(confirm("Silinsin mi?")){A.splice(i,1);mark();more()}}
+ else{const j=a==="u"?i-1:i+1;if(j>=0&&j<A.length){[A[i],A[j]]=[A[j],A[i]];mark();more()}}});
+let gk=null,gi=null,gP=null;
+function openG(k,i){gk=k;gi=i;gP=null;const c=COL[k],x=i==null?{}:data[k][i];$("dtG").textContent=c.n;
+ $("fG").innerHTML=c.f.map(([n,l,t,o])=>`<label for="g_${n}">${l}</label>`+(t==="area"?`<textarea id="g_${n}" rows="4">${esc(x[n]||"")}</textarea>`:t==="sel"?`<select id="g_${n}">${o.map(v=>`<option${(x[n]||o[0])===v?" selected":""}>${v}</option>`).join("")}</select>`:`<input id="g_${n}" type="${t}" value="${esc(x[n]||(n==="tarih"?today():""))}"${/\*$/.test(l)?" required":""}>`)).join("");
+ $("gF").style.display=$("gFL").style.display=c.foto?"block":"none";$("gF").value="";const src=c.foto&&x[c.foto[0]]?(pend[x[c.foto[0]]]||x[c.foto[0]]):"";$("pvG").style.display=src?"block":"none";$("pvG").src=src;$("dlgG").showModal()}
+$("gF").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{gP=await resize(f,COL[gk].foto[1]);$("pvG").src=gP;$("pvG").style.display="block"}catch{alert("Bu fotoğraf okunamadı.")}};
+$("cnG").onclick=()=>$("dlgG").close();
+$("fmG").onsubmit=ev=>{ev.preventDefault();const c=COL[gk],x=gi==null?{id:gk+"-"+Date.now().toString(36)}:data[gk][gi];
+ if(c.foto&&!gP&&c.foto[2]&&!x[c.foto[0]]){alert("Bu kayıt için bir fotoğraf seçin.");return}
+ c.f.forEach(([n])=>x[n]=$("g_"+n).value.trim());
+ if(c.foto&&gP){const p=`images/${gk}-${Date.now().toString(36)}.jpg`;pend[p]=gP;x[c.foto[0]]=p}
+ if(gi==null)data[gk].push(x);$("dlgG").close();mark();more()};
+function siteX(){const s=data.site;s.sosyal=s.sosyal||{};$("s_hakkimizda").value=s.hakkimizda||"";$("s_hakkimizda").oninput=()=>{s.hakkimizda=$("s_hakkimizda").value;mark()};
+ ["instagram","facebook","youtube","eposta"].forEach(k=>{$("s_"+k).value=s.sosyal[k]||"";$("s_"+k).oninput=()=>{s.sosyal[k]=$("s_"+k).value.trim();mark()}});
+ const lg=s.logo?(pend[s.logo]||s.logo):"";$("pvL").style.display=lg?"block":"none";$("pvL").src=lg}
+$("s_logo").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const d=await resize(f,400,"image/png"),p=`images/logo-${Date.now().toString(36)}.png`;pend[p]=d;data.site.logo=p;mark();siteX()}catch{alert("Görsel okunamadı.")}};
+$("go").onclick=connect;
+if(cfg.repo&&cfg.token){$("repo").value=cfg.repo;$("br").value=cfg.br;$("tk").value=cfg.token;connect()}
+</script></body></html>
